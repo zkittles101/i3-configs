@@ -17,7 +17,7 @@ exec --no-startup-id dex --autostart --environment i3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Programs to autostart on log in 
 exec --no-startup-id xdotool key --clearmodifiers Num_Lock   
@@ -30,8 +30,8 @@ exec --no-startup-id "xcompmgr -r 9.8 -o 0.61 -l -13.8 -t -14.5 -I 0.017 -O 0.02
 exec --no-startup-id ibus-daemon -rxd 
 exec --no-startup-id redshift
 exec --no-startup-id copyq 
-# Use pactl to adjust volume in PulseAudio.
 
+#Adjust volume using alsamixer
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym $mod+KP_Subtract exec --no-startup-id  amixer sset Master 5%- && $refresh_i3status
 bindsym $mod+KP_Add exec --no-startup-id amixer sset Master 5%+ && $refresh_i3status
@@ -46,6 +46,7 @@ tiling_drag modifier titlebar
 # KeyBindings for Programs
 bindsym $mod+Return exec alacritty 
 bindsym $mod+space exec "rofi -show drun"
+bindsym $mod+p exec i3-dmenu-desktop
 bindsym Print exec scratta
 bindsym $mod+v exec thunar
 bindsym $mod+t exec Forkgram
@@ -100,7 +101,7 @@ bindsym $mod+d focus mode_toggle
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: trmnl."
 set $ws2 "2: www."
-set $ws3 "3: netwrk."
+set $ws3 "3: ntwrk."
 set $ws4 "4: docs."
 set $ws5 "5: media."
 set $ws6 "6: wrksps.6"
@@ -160,12 +161,6 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
@@ -187,8 +182,9 @@ bindsym $mod+r mode "resize"
 #}
 
 #Set up gaps around containers
-gaps inner 15
-gaps outer 5
+gaps inner 10
+gaps outer 10
+gaps bottom 35
 
 #auto return to previous workspace
 workspace_auto_back_and_forth yes

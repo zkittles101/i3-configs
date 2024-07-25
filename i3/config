@@ -21,6 +21,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # Programs to autostart on log in 
 exec --no-startup-id xdotool key --clearmodifiers Num_Lock   
+exec --no-startup-id setxkbmap -option "caps:swapescape"
 exec --no-startup-id rescrobbled
 exec --no-startup-id dunst  
 exec --no-startup-id setwall
@@ -101,7 +102,7 @@ bindsym $mod+d focus mode_toggle
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: trmnl."
 set $ws2 "2: www."
-set $ws3 "3: ntwrk."
+set $ws3 "3: chat."
 set $ws4 "4: docs."
 set $ws5 "5: media."
 set $ws6 "6: wrksps.6"
@@ -139,6 +140,7 @@ assign [class="Min"] $ws2
 assign [class="librewolf"] $ws2 
 assign [class="TelegramDesktop"] $ws3
 assign [class="Thunar"] $ws4
+assign [class="Zathura"] $ws4
 assign [class="Vlc"] $ws5
 assign [class="mpv"] $ws5
 assign [class="audacious"] $ws5
@@ -187,11 +189,11 @@ gaps outer 10
 gaps bottom 35
 
 #auto return to previous workspace
-workspace_auto_back_and_forth yes
+#workspace_auto_back_and_forth yes
 
 
 #solarized color scheme
-client.focused          #002b36 #586e75 #fdf6e3 #268bd2
+client.focused          #586e75 #586e75 #fdf6e3 #dc322f
 client.focused_inactive #002b36 #073642 #839496 #073642
 client.unfocused        #002b36 #073642 #839496 #073642
 client.urgent           #002b36 #dc322f #fdf6e3 #002b36

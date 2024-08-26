@@ -20,11 +20,11 @@ exec --no-startup-id dex --autostart --environment i3
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Programs to autostart on log in 
-exec --no-startup-id xdotool key --clearmodifiers Num_Lock   
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id numlockx
 exec --no-startup-id xmodmap ~/.Xmodmap
 exec --no-startup-id rescrobbled
 exec --no-startup-id dunst  
-exec --no-startup-id setwall
 exec --no-startup-id "polybar -c ~/.config/polybar/i3-bar.ini -r"
 exec --no-startup-id nm-applet
 exec --no-startup-id "xcompmgr -r 9.8 -o 0.61 -l -13.8 -t -14.5 -I 0.017 -O 0.02 -D 6.0 -c -C -f -F -n "
@@ -47,12 +47,11 @@ tiling_drag modifier titlebar
 # KeyBindings for Programs
 bindsym $mod+Return exec alacritty 
 bindsym $mod+space exec "rofi -show drun"
-bindsym $mod+p exec i3-dmenu-desktop
 bindsym Print exec scratta
 bindsym $mod+v exec thunar
 bindsym $mod+t exec Forkgram
 bindsym $mod+c exec min-browser
-bindsym $mod+f exec librewolf
+bindsym $mod+f exec firefox
 bindsym $mod+m exec audacious
 bindsym Control+q exec xkill
 
@@ -138,12 +137,15 @@ bindsym $mod+Shift+KP_Insert move container to workspace number $ws10
 # Assign programs to specific workspaces
 assign [class="Min"] $ws2
 assign [class="librewolf"] $ws2 
+assign [class="firefox"] $ws2 
 assign [class="TelegramDesktop"] $ws3
 assign [class="Thunar"] $ws4
 assign [class="Zathura"] $ws4
 assign [class="Vlc"] $ws5
 assign [class="mpv"] $ws5
 assign [class="audacious"] $ws5
+
+for_window [class="org.gnome.Nautilus"] move container to workspace $ws4
 for_window [class="Spotify"] move container to workspace $ws5
 
 # reload the configuration file
@@ -164,9 +166,16 @@ mode "resize" {
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
         bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Shift+Left resize shrink width 50 px or 50 ppt 
+        
         bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Shift+Down resize grow height 50 px or 50 ppt
+
         bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Shift+Up resize shrink height 50 px or 50 ppt
+
         bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Shift+Right resize grow width 50 px or 50 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"

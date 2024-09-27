@@ -54,6 +54,11 @@ bindsym $mod+c exec min-browser
 bindsym $mod+f exec firefox
 bindsym $mod+m exec audacious
 bindsym Control+q exec xkill
+bindsym $mod+k exec "xmodmap ~/.Xmodmap && notify-send 'Keys Swapped'"
+
+# Always open MPV in stacking mode with a specific size
+for_window [class="mpv"] floating enable, resize set 900 480, layout stacking
+
 
 
 # kill focused window
@@ -142,7 +147,7 @@ assign [class="TelegramDesktop"] $ws3
 assign [class="Thunar"] $ws4
 assign [class="Zathura"] $ws4
 assign [class="Vlc"] $ws5
-assign [class="mpv"] $ws5
+# assign [class="mpv"] $ws5
 assign [class="audacious"] $ws5
 
 for_window [class="org.gnome.Nautilus"] move container to workspace $ws4
@@ -194,7 +199,7 @@ bindsym $mod+r mode "resize"
 
 #Set up gaps around containers
 gaps inner 10
-gaps outer 10
+gaps outer 5
 # gaps bottom 35
 
 #auto return to previous workspace

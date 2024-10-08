@@ -28,7 +28,7 @@ exec --no-startup-id xbanish
 exec --no-startup-id nm-applet
 exec --no-startup-id lxpolkit
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id "setxkbmap -option caps:swapescape"
+exec --no-startup-id "xmodmap ~/.Xmodmap"
 exec --no-startup-id lxsession
 exec --no-startup-id dunst  
 exec --no-startup-id "polybar -c ~/.config/polybar/i3-bar.ini -r"
@@ -52,22 +52,26 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 15%-
 floating_modifier $mod
 
 # Set the border for window frames inorder to disable the title bar
-default_border pixel 4
+default_border pixel 5
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
+tiling_drag modifier
 
 # KeyBindings for Programs
 bindsym $mod+Return exec alacritty 
 bindsym $mod+space exec "rofi -show drun"
-bindsym Mod1+F4 exec ~/bin/power-script.sh 
+bindsym Mod1+F4 exec ~/bin/power-script.sh
+bindsym $mod+p exec ~/bin/tlp-switch.sh
 bindsym Print exec flameshot gui
 bindsym $mod+v exec thunar
 bindsym $mod+t exec "/opt/Telegram/Telegram"
 bindsym $mod+f exec firefox
+bindsym $mod+c exec min-browser
 bindsym $mod+m exec spotify
 bindsym Control+q exec xkill
+bindsym $mod+k exec "xmodmap ~/.Xmodmap && notify-send 'Keys Swapped'"
+
 
 # kill focused window
 bindsym $mod+q kill
@@ -85,8 +89,9 @@ bindsym $mod+Shift+Up move up 50px
 bindsym $mod+Shift+Right move right 50px
 
 #focus on newly spawned window
-# focus_on_window_activation focus
-for_window [urgent="latest"] focus
+focus_on_window_activation focus
+for_window [class="TelegramDesktop"] focus
+for_window [class="Thunar"] focus
 
 # split in horizontal orientation
 bindsym $mod+x split h
@@ -126,7 +131,7 @@ set $ws10 "10: wrksps.10"
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
+bindsym $mod+4 workspace number $ws4 layout tabbed
 bindsym $mod+5 workspace number $ws5
 bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
@@ -147,12 +152,12 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # Assign programs to specific workspaces
-assign [class="Min"] $ws2
-assign [class="librewolf"] $ws2 
+assign [class="Min"] $ws2 
 assign [class="firefox"] $ws2 
 assign [class="TelegramDesktop"] $ws3
 assign [class="Thunar"] $ws4
-assign [class="Zathura"] $ws4
+assign [class="Evince"] $ws4
+assign [class="obsidian"] $ws4
 assign [class="Vlc"] $ws5
 assign [class="mpv"] $ws5
 assign [class="Audacious"] $ws5
@@ -160,14 +165,14 @@ assign [class="Audacious"] $ws5
 for_window [class="Spotify"] move container to workspace $ws5
 for_window [class="copyq"] floating enable
 for_window [class="Blueman-manager"] floating enable
-for_window [class="TelegramDesktop"] floating enable
+# for_window [class="TelegramDesktop"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? ' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

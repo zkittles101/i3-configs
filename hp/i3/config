@@ -18,13 +18,15 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock --  betterlockscreen -l blur
+
+# exec --no-startup-id xss-lock --transfer-sleep-lock --  betterlockscreen -l blur
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 
 # Programs to autostart on log in 
 exec --no-startup-id xbanish
+exec --no-startup-id indicator-sound-switcher
 exec --no-startup-id nm-applet
 exec --no-startup-id lxpolkit
 exec --no-startup-id nitrogen --restore
@@ -34,7 +36,8 @@ exec --no-startup-id dunst
 exec --no-startup-id "polybar -c ~/.config/polybar/i3-bar.ini -r"
 exec --no-startup-id nm-applet
 exec --no-startup-id picom 
-exec --no-startup-id ibus-daemon -rxd 
+exec --no-startup-id fcitx5
+# exec --no-startup-id ibus-daemon -rxd 
 exec --no-startup-id redshift
 exec --no-startup-id copyq 
 
@@ -44,6 +47,11 @@ bindsym XF86AudioMute exec amixer sset 'Master' toggle
 bindsym XF86AudioLowerVolume exec amixer sset 'Master' 5%-
 bindsym XF86AudioRaiseVolume exec amixer sset 'Master' 5%+
 
+#Adjust volume for my AirPods
+bindsym Shift+XF86AudioLowerVolume exec pactl set-sink-volume bluez_output.41_05_44_5C_FF_70.1 -10%
+bindsym Shift+XF86AudioRaiseVolume exec pactl set-sink-volume bluez_output.41_05_44_5C_FF_70.1 +10%
+bindsym Shift+XF86AudioMute exec pactl set-sink-volume bluez_output.41_05_44_5C_FF_70.1 -100%
+
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec brightnessctl set +15%
 bindsym XF86MonBrightnessDown exec brightnessctl set 15%-
@@ -52,7 +60,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 15%-
 floating_modifier $mod
 
 # Set the border for window frames inorder to disable the title bar
-default_border pixel 5
+default_border pixel 4
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
@@ -61,15 +69,17 @@ tiling_drag modifier
 # KeyBindings for Programs
 bindsym $mod+Return exec alacritty 
 bindsym $mod+space exec "rofi -show drun"
+bindsym $mod+Control+space exec "rofi -show emoji -theme emoji"
 bindsym Mod1+F4 exec ~/bin/power-script.sh
 bindsym $mod+p exec ~/bin/tlp-switch.sh
 bindsym Print exec flameshot gui
 bindsym $mod+v exec thunar
-bindsym $mod+t exec "/opt/Telegram/Telegram"
+bindsym $mod+t exec forkgram
+# bindsym $mod+t exec "/opt/Telegram/Telegram"
 bindsym $mod+f exec firefox
 bindsym $mod+c exec min-browser
-bindsym $mod+m exec spotify
-bindsym Control+q exec xkill
+bindsym $mod+m exec spotify-launcher
+bindsym --release Control+q exec xkill
 bindsym $mod+k exec "xmodmap ~/.Xmodmap && notify-send 'Keys Swapped'"
 
 
@@ -110,8 +120,19 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
+#bindsym $mod+Shift+space floating toggle ; [floating ] resize set 984 828 ; move position center 
+
+#toggle sticky mode
+bindsym $mod+u sticky toggle
+
+# set sticky mode for PiP windows
+for_window [instance=Toolkit] sticky enable
+
 # change focus between tiling / floating windows
 bindsym $mod+d focus mode_toggle
+
+bindsym $mod+Shift+a move scratchpad
+bindsym $mod+a scratchpad show
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -161,6 +182,7 @@ assign [class="obsidian"] $ws4
 assign [class="Vlc"] $ws5
 assign [class="mpv"] $ws5
 assign [class="Audacious"] $ws5
+assign [class="vesktop"] $ws4
 
 for_window [class="Spotify"] move container to workspace $ws5
 for_window [class="copyq"] floating enable
@@ -215,11 +237,11 @@ gaps outer 2
 # gaps bottom 35
 
 #auto return to previous workspace
-#workspace_auto_back_and_forth yes
+workspace_auto_back_and_forth yes
 
-
-#solarized color scheme
-client.focused          #586e75 #586e75 #fdf6e3 #dc322f
+## Color Scheme---------border--bg.-----text----indicator
+#Solarized Dark
+client.focused          #586675 #586e75 #fdf6e3 #dc322f
 client.focused_inactive #002b36 #073642 #839496 #073642
 client.unfocused        #002b36 #073642 #839496 #073642
 client.urgent           #002b36 #dc322f #fdf6e3 #002b36

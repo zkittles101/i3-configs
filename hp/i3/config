@@ -60,7 +60,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 floating_modifier $mod
 
 # Set the border for window frames inorder to disable the title bar
-# default_border pixel 4
+default_border pixel 4
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.

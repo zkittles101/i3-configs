@@ -53,8 +53,8 @@ bindsym Shift+XF86AudioRaiseVolume exec pactl set-sink-volume bluez_output.41_05
 bindsym Shift+XF86AudioMute exec pactl set-sink-volume bluez_output.41_05_44_5C_FF_70.1 -100%
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec brightnessctl set +15%
-bindsym XF86MonBrightnessDown exec brightnessctl set 15%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -74,11 +74,11 @@ bindsym Mod1+F4 exec ~/bin/power-script.sh
 bindsym $mod+p exec ~/bin/tlp-switch.sh
 bindsym Print exec flameshot gui
 bindsym $mod+v exec thunar
-bindsym $mod+t exec forkgram
-# bindsym $mod+t exec "/opt/Telegram/Telegram"
+# bindsym $mod+t exec forkgram
+bindsym $mod+t exec "/opt/Telegram/Telegram"
 bindsym $mod+f exec firefox
 bindsym $mod+c exec min-browser
-bindsym $mod+m exec spotify-launcher
+bindsym $mod+m exec spotify-tray
 bindsym --release Control+q exec xkill
 bindsym $mod+k exec "xmodmap ~/.Xmodmap && notify-send 'Keys Swapped'"
 
@@ -161,7 +161,8 @@ set $ws10 "10: wrksps.10"
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4 layout tabbed
+bindsym $mod+4 workspace number $ws4
+# bindsym $mod+4 workspace number $ws4 layout tabbed
 bindsym $mod+5 workspace number $ws5
 bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
@@ -185,7 +186,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 assign [class="Min"] $ws2 
 assign [class="firefox"] $ws2 
 assign [class="TelegramDesktop"] $ws3
-assign [class="Thunar"] $ws4
+# assign [class="Thunar"] $ws4
 assign [class="Evince"] $ws4
 assign [class="obsidian"] $ws4
 assign [class="Vlc"] $ws5
@@ -193,7 +194,7 @@ assign [class="mpv"] $ws5
 assign [class="Audacious"] $ws5
 assign [class="vesktop"] $ws4
 # assign [class="Spotify"] $ws5 
-for_window [class="Spotify"] move container to workspace $ws5
+# for_window [class="Spotify"] move container to workspace $ws5
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -247,10 +248,14 @@ workspace_auto_back_and_forth yes
 
 ## Color Scheme---------border--bg.-----text----indicator
 #Solarized Dark
-client.focused          #586675 #586e75 #fdf6e3 #dc322f
-client.focused_inactive #002b36 #073642 #839496 #073642
-client.unfocused        #002b36 #073642 #839496 #073642
-client.urgent           #002b36 #dc322f #fdf6e3 #002b36
-
+# client.focused          #586675 #586e75 #fdf6e3 #dc322f
+# client.focused_inactive #002b36 #073642 #839496 #073642
+# client.unfocused        #002b36 #073642 #839496 #073642
+# client.urgent           #002b36 #dc322f #fdf6e3 #002b36
+#Nord 
+client.focused          #8ABEB7 #8ABEB7 #fdf6e3 #A54242
+client.focused_inactive #2E3440 #4C566A #8ABEB7 #2E3440
+client.unfocused        #2E3440 #4C566A #8ABEB7 #2E3440
+client.urgent           #2E3440 #A54242 #fdf6e3 #2E3440
 
 

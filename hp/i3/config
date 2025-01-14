@@ -249,13 +249,13 @@ workspace_auto_back_and_forth yes
 ## Color Scheme---------border--bg.-----text----indicator
 #Solarized Dark
 # client.focused          #586675 #586e75 #fdf6e3 #dc322f
-# client.focused_inactive #002b36 #073642 #839496 #073642
-# client.unfocused        #002b36 #073642 #839496 #073642
-# client.urgent           #002b36 #dc322f #fdf6e3 #002b36
+# client.focused_inactive #073642 #073642 #839496 #073642
+# client.unfocused        #073642 #073642 #839496 #073642
+# client.urgent          #dc322f  #dc322f #fdf6e3 #002b36
 #Nord 
 client.focused          #707880 #707880 #fdf6e3 #A54242
-client.focused_inactive #2E3440 #4C566A #fdf6e3 #2E3440
-client.unfocused        #2E3440 #4C566A #fdf6e3 #2E3440
-client.urgent           #2E3440 #A54242 #fdf6e3 #2E3440
+client.focused_inactive #4C566A #4C566A #fdf6e3 #2E3440
+client.unfocused        #4C566A #4C566A #fdf6e3 #2E3440
+client.urgent           ##A54242 #A54242 #fdf6e3 #2E3440
 
 

@@ -52,9 +52,12 @@ bindsym Shift+XF86AudioLowerVolume exec pactl set-sink-volume bluez_output.41_05
 bindsym Shift+XF86AudioRaiseVolume exec pactl set-sink-volume bluez_output.41_05_44_5C_FF_70.1 +10%
 bindsym Shift+XF86AudioMute exec pactl set-sink-volume bluez_output.41_05_44_5C_FF_70.1 -100%
 
-# Sreen brightness controls
+# Screen brightness controls
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+# Power Button Control
+bindsym XF86PowerOff exec ~/bin/power-script.sh
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -67,18 +70,20 @@ default_border pixel 4
 tiling_drag modifier
 
 # KeyBindings for Programs
-bindsym $mod+Return exec alacritty 
+bindsym $mod+Return exec alacritty
 bindsym $mod+space exec "rofi -show drun"
 bindsym $mod+Control+space exec "rofi -show emoji -theme emoji"
-bindsym Mod1+F4 exec ~/bin/power-script.sh
+# bindsym Mod1+F4 exec ~/bin/power-script.sh
 bindsym $mod+p exec ~/bin/tlp-switch.sh
 bindsym Print exec flameshot gui
 bindsym $mod+v exec thunar
 # bindsym $mod+t exec forkgram
 bindsym $mod+t exec "/opt/Telegram/Telegram"
 bindsym $mod+f exec firefox
+bindsym $mod+z exec zen-browser 
 bindsym $mod+c exec min-browser
 bindsym $mod+m exec spotify-tray
+bindsym $mod+l exec "flatpak run com.github.wwmm.easyeffects" 
 bindsym --release Control+q exec xkill
 bindsym $mod+k exec "xmodmap ~/.Xmodmap && notify-send 'Keys Swapped'"
 
@@ -107,6 +112,7 @@ for_window [class="Thunar"] focus
 for_window [class="copyq"] floating enable
 for_window [class="Blueman-manager"] floating enable
 for_window [class="Windscribe2"] floating enable
+for_window [class="easyeffects"] floating enable
 # for_window [class="TelegramDesktop"] floating enable
 for_window [class="Qalculate-gtk"] floating enable 
 for_window [class="Free Download Manager"] floating enable
@@ -185,6 +191,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # Assign programs to specific workspaces
 assign [class="Min"] $ws2 
 assign [class="firefox"] $ws2 
+assign [class="zen"] $ws2
 assign [class="TelegramDesktop"] $ws3
 # assign [class="Thunar"] $ws4
 assign [class="Evince"] $ws4

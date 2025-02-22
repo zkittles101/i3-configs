@@ -70,7 +70,8 @@ default_border pixel 4
 tiling_drag modifier
 
 # KeyBindings for Programs
-bindsym $mod+Return exec alacritty
+# bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 bindsym $mod+space exec "rofi -show drun"
 bindsym $mod+Control+space exec "rofi -show emoji -theme emoji"
 # bindsym Mod1+F4 exec ~/bin/power-script.sh
@@ -81,7 +82,8 @@ bindsym $mod+v exec thunar
 bindsym $mod+t exec "/opt/Telegram/Telegram"
 bindsym $mod+f exec firefox
 bindsym $mod+z exec zen-browser 
-bindsym $mod+c exec min-browser
+bindsym $mod+c exec chromium
+# bindsym $mod+c exec min-browser
 bindsym $mod+m exec spotify-tray
 bindsym $mod+l exec "flatpak run com.github.wwmm.easyeffects" 
 bindsym --release Control+q exec xkill

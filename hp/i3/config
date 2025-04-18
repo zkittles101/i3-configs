@@ -53,8 +53,8 @@ bindsym Shift+XF86AudioRaiseVolume exec pactl set-sink-volume bluez_output.41_05
 bindsym Shift+XF86AudioMute exec pactl set-sink-volume bluez_output.41_05_44_5C_FF_70.1 -100%
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec brightnessctl set +5%
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +20
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -20
 
 # Power Button Control
 bindsym XF86PowerOff exec ~/bin/power-script.sh
@@ -84,7 +84,8 @@ bindsym $mod+f exec firefox
 bindsym $mod+z exec zen-browser 
 bindsym $mod+c exec chromium
 # bindsym $mod+c exec min-browser
-bindsym $mod+m exec spotify-tray
+bindsym $mod+m exec spotify
+# bindsym $mod+m exec "spotify-tray --class=Spotify -i /usr/share/icons/Papirus-Dark/24x24/apps/spotify.svg" 
 bindsym $mod+l exec "flatpak run com.github.wwmm.easyeffects" 
 bindsym --release Control+q exec xkill
 bindsym $mod+k exec "xmodmap ~/.Xmodmap && notify-send 'Keys Swapped'"
@@ -109,12 +110,16 @@ bindsym $mod+Shift+Right move right 50px
 focus_on_window_activation focus
 for_window [class="TelegramDesktop"] focus
 for_window [class="Thunar"] focus
+for_window [class="mpv"] focus
 
 # assign specific programs to spawn floating 
+for_window [window_role="pop-up"] floating enable
+for_window [class="Beeper"] floating enable
 for_window [class="copyq"] floating enable
 for_window [class="Blueman-manager"] floating enable
 for_window [class="Windscribe2"] floating enable
 for_window [class="easyeffects"] floating enable
+for_window [class="Evince"] floating enable 
 # for_window [class="TelegramDesktop"] floating enable
 for_window [class="Qalculate-gtk"] floating enable 
 for_window [class="Free Download Manager"] floating enable
@@ -194,16 +199,19 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 assign [class="Min"] $ws2 
 assign [class="firefox"] $ws2 
 assign [class="zen"] $ws2
+assign [class="chromium"] $ws2
 assign [class="TelegramDesktop"] $ws3
 # assign [class="Thunar"] $ws4
 assign [class="Evince"] $ws4
-assign [class="obsidian"] $ws4
+assign [class="papers"] $ws4
+# assign [class="obsidian"] $ws4
 assign [class="Vlc"] $ws5
 assign [class="mpv"] $ws5
-assign [class="Audacious"] $ws5
-assign [class="vesktop"] $ws4
+assign [class="Audacious"] $ws9
+assign [class="vesktop"] $ws8
+assign [class="Beeper"] $ws8
 # assign [class="Spotify"] $ws5 
-# for_window [class="Spotify"] move container to workspace $ws5
+for_window [class="Spotify"] move container to workspace $ws9
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
